@@ -62,15 +62,37 @@ public class LandHit : MonoBehaviour, ILandHit
 
     void attackFail()
     {
-
+        rotateArm.stopRotate();
     }
 
     void initialBoom(float rotateTime)
     {
+        float basef = 1;
+        if (rotateTime >= 0.5)
+            basef = 5;
+        if (rotateTime >= 0.7)
+            basef = 10;
+        if (rotateTime >= 0.8)
+            basef = 20;
+        if(rotateTime >= 0.9)
+            basef = 30;
+        if (rotateTime >= 1)
+            basef = 50;
+        if (rotateTime >= 1.1)
+            basef = 70;
+        if (rotateTime >= 1.2)
+            basef = 90;
+        if (rotateTime >= 1.3)
+            basef = 110;
+        if (rotateTime >= 1.4)
+            basef = 130;
+
+        float booMPower = rotateTime * rotateTime *basef + 0.3f  ;
+        Debug.Log("Roteta" + rotateTime * rotateTime *basef+ "velo " );
         GameObject a = Instantiate(BoomEFprefab, armController.getHitPos(),Quaternion.identity);
         a.transform.localScale *= 1 + rotateTime*2;
         CinemachineCollisionImpulseSource cs = this.GetComponent<CinemachineCollisionImpulseSource>();
-        cs.m_ImpulseDefinition.m_AmplitudeGain = rotateTime * rotateTime + 0.3f;
+        cs.m_ImpulseDefinition.m_AmplitudeGain =booMPower;
         cs.GenerateImpulse();
     }
 }

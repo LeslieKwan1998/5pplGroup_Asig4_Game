@@ -40,7 +40,7 @@ public class Grapple : MonoBehaviour, IGrapple
     {
         if(grappleHead!=null)
         { return; }
-        Debug.Log("shoot");
+
         armController.hideArm();
         GameObject headOB= Instantiate(GrappleHeadPrefab);
         headOB.transform.position = armRig.transform.position;
