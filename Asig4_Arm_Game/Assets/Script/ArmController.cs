@@ -10,7 +10,9 @@ public class ArmController : MonoBehaviour
     SpriteRenderer renderer;
     Sprite orignSprite;
     [SerializeField]
-    HitBox hitBox; // to detect whether this arm is hitng something
+    public HitBox hitBox; // to detect whether this arm is hitng something
+    [SerializeField]
+    public Animator animator; // to detect whether this arm is hitng something
     // Start is called before the first frame update
     void Start()
     {

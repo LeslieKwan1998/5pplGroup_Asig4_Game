@@ -2,21 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CenterController : MonoBehaviour
+public partial class CenterController : MonoBehaviour
 {
-    IBasicMoveMent basicMoveMent;
-    IRotateArm rotateArm;
-    ILandHit landHit;
-    IGrapple grapple;
-    ISlimeArm slimeArm;
-    ITeleporte teleporte;
-    IChargeArm chargeArm;
+    public IBasicMoveMent basicMoveMent;
+    public  IRotateArm rotateArm;
+    public ILandHit landHit;
+    public IGrapple grapple;
+    public ISlimeArm slimeArm;
+    public ITeleporte teleporte;
+    public IChargeArm chargeArm;
     Rigidbody2D rig;
     [SerializeField]
     ArmController armController;
-    bool isStun; // if player is stun , all input will be ignore;
+    [SerializeField]
+    public Animator playerAni;
+
+    [SerializeField]
+    public Transform GroundCheckL;
+    [SerializeField]
+    public Transform GroundCheckM;
+    [SerializeField]
+    public Transform GroundCheckR;
+
+    public bool isFaceToX = true;
+    
+
     // Start is called before the first frame update
 
+    StateMachine<CenterController> stateMachine;
    public  Rigidbody2D getRig()
     {
         return rig;
@@ -34,6 +47,8 @@ public class CenterController : MonoBehaviour
     {
         getComponents();
         getAbilities();
+        stateMachine = new StateMachine<CenterController>(this, this, new IdleState(this));
+        stateMachine.excute();
     }
 
     void getAbilities()
@@ -109,41 +124,55 @@ public class CenterController : MonoBehaviour
     void getComponents()
     {
         rig = this.GetComponent<Rigidbody2D>();
+      
        
     }
     // Update is called once per frame
     void Update()
     {
-        playerInput();
-
+      //  playerInput();
+      
+        if (Input.GetKey(KeyCode.T))
+        {
+            
+            Debug.Log("on" + state_isOnGround());
+        }
+      
     }
 
     void playerInput()
-    {    if (isStun)
-            return;
-        if (Input.GetKey(KeyCode.A))
-            moveLeft();
-        if (Input.GetKey(KeyCode.D))
-            moveRight();
+    {   
+      
+        //////if (Input.GetKey(KeyCode.S))
+        //////{ rotateArm.rotateLeft();
+        //////    Debug.Log("l");
+        //////}
+        //////if (Input.GetKey(KeyCode.W))
+        //////{
+        //////    rotateArm.rotateRight();
+        //////    Debug.Log("r");
+        //////}
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && rotateArm.isEnabled())
             rotateArm.stopRotate();
         if (Input.GetKeyDown(KeyCode.Space))
             swichMoveMent();
-        if (Input.GetKeyDown(KeyCode.W)&&slimeArm.isEnabled())
-            slimeArm.activate();
-        if (!Input.GetKey(KeyCode.W)&&slimeArm.isEnabled())
-            slimeArm.deactivate();
+        //if (Input.GetKeyDown(KeyCode.W)&&slimeArm.isEnabled())
+        //    slimeArm.activate();
+        //if (!Input.GetKey(KeyCode.W)&&slimeArm.isEnabled())
+        //    slimeArm.deactivate();
         if (Input.GetKey(KeyCode.K)&&grapple.isEnabled()&&rotateArm.isActivate())
             shootHook();
         if (Input.GetKeyDown(KeyCode.J) && landHit.isEnabled() && rotateArm.isActivate())
-            landHit.Hit();
-
+            attack();
+        if (Input.GetKeyDown(KeyCode.J) && basicMoveMent.isActivate())
+        {
+            Debug.Log("jp");
+            basicMoveMent.Jump(); 
+        
+        }
     }
 
-    public void setStun(bool value)
-    {
-        isStun = value;
-    }
+  
    
 
     void moveLeft() // Move to left , the movement way depends on which ability is enabled
@@ -152,6 +181,7 @@ public class CenterController : MonoBehaviour
         if (rotateArm.isEnabled()&&rotateArm.isActivate())
         {
             rotateArm.rotateLeft();
+            //isAttacking = false;
         }
         else
         {
@@ -163,6 +193,7 @@ public class CenterController : MonoBehaviour
         if (rotateArm.isEnabled() && rotateArm.isActivate())
         {
             rotateArm.rotateRight();
+            //isAttacking = false;
         }
         else
         {
@@ -194,6 +225,28 @@ public class CenterController : MonoBehaviour
 
         grapple.shootHook();
     }
-
+    public void attack()
+    {
+        landHit.Hit();
  
+    }
+
+    public void setPlayerAni(string tigger)
+    {
+        playerAni.SetTrigger(tigger);
+    }
+    public void playerAniClip(string name)
+    {
+        playerAni.Play(name);
+ 
+    }
+    public void flip()
+    {
+     
+        if(this.gameObject.transform.localScale.x>0&&!isFaceToX)
+        this.gameObject.transform.localScale =  new Vector3(-this.gameObject.transform.localScale.x, this.gameObject.transform.localScale.y, this.gameObject.transform.localScale.z);
+        if (this.gameObject.transform.localScale.x < 0 && isFaceToX)
+            this.gameObject.transform.localScale = new Vector3(-this.gameObject.transform.localScale.x, this.gameObject.transform.localScale.y, this.gameObject.transform.localScale.z);
+    }
+    
 }

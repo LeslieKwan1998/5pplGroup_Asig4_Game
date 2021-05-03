@@ -39,6 +39,7 @@ public class GrappleHead : MonoBehaviour
     }
     public float flyingTime() //get current flying time
     {
+
         return flyTime;
     }
     IEnumerator flyTimer()
