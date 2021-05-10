@@ -41,3 +41,16 @@ public class BasicMoveState : State
             centerController.basicMoveMent.moveRight();
     }
 }
+public abstract class MovebleAirState:State
+{
+    protected CenterController centerController;
+    public override void excute()
+    {
+        base.excute();
+        if (Input.GetKey(KeyCode.A))
+            centerController.basicMoveMent.slowMoveLeft();
+        if (Input.GetKey(KeyCode.D))
+            centerController.basicMoveMent.slowMoveRight();
+
+    }
+}

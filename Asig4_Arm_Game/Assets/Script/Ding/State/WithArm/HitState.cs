@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitState : State
+public class HitState : MovebleAirState
 {
 
-    CenterController centerController;
+
 
     public HitState(CenterController centerController)
     {
@@ -23,7 +23,7 @@ public class HitState : State
     }
     public override void leaveState()
     {
-        Debug.LogError("leave");
+
         centerController.rotateArm.stopRotate();
     }
 

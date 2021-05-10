@@ -6,9 +6,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InAirDownState : State
+public class InAirDownState : MovebleAirState
 {
-    CenterController centerController;
+    
     bool ableToSuperJump = true;
     public InAirDownState(CenterController centerController, bool ableToSuperJump = true)
     {
@@ -28,7 +28,7 @@ public class InAirDownState : State
             return new SuperJumpState(centerController);
         if (centerController.state_isOnGround())
             return new IdleState(centerController);
-        if (Input.GetKey(KeyCode.Space)&&!pausing)
+        if (Input.GetKey(KeyCode.Space))
             return new IdleWithArmState(centerController);
         return this;
     }

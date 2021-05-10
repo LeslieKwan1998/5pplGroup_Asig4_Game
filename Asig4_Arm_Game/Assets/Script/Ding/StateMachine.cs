@@ -20,6 +20,10 @@ public class StateMachine<T>
         mono.StartCoroutine(ieExcute());
 
     }
+    public string getCurState()
+    {
+        return curState.ToString();
+    }
     IEnumerator ieExcute()
     {
         while (true)

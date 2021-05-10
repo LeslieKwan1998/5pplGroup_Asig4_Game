@@ -26,6 +26,8 @@ public class JumpState : State
         // 判断动画是否播放完成
         if (info.normalizedTime >= 1.0f)
             return new InAirUpState(centerController);
+        if (Input.GetKey(KeyCode.K))
+            return new SuperJumpState(centerController);
         if (Input.GetKey(KeyCode.Space) )
         {
             centerController.basicMoveMent.Jump() ;

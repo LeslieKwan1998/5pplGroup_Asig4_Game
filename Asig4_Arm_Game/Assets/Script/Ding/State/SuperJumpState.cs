@@ -14,7 +14,7 @@ public class SuperJumpState : State
     public override void beginFunc()
     {
         centerController.basicMoveMent.SuperJump();
-        //centerController.setPlayerAni("NormalSuperJump");
+      //  centerController.basicMoveMent.Jump();
         centerController.playerAniClip("NormalSuperJump");
     }
 
