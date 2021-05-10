@@ -76,11 +76,31 @@ public class BasicMoveMent : MonoBehaviour, IBasicMoveMent
         if (superPower <= jumpSpeed/2)
             superPower = jumpSpeed/2;
         //   rig.AddForce(Vector2.up * 1000,ForceMode2D.Impulse);
+        if (superPower >= 1.4f * jumpSpeed)
+            centerController.showNotify("Perfect", Color.blue);
+        else if(superPower >= 1.1*jumpSpeed)
+            centerController.showNotify("Good", Color.green);
+
         rig.velocity = new Vector2(rig.velocity.x, superPower);
     }
 
     public void SmallJump()
     {
         rig.velocity = new Vector2(rig.velocity.x, jumpSpeed/2);
+    }
+
+    public void slowMoveLeft()
+    {
+        rig.velocity = new Vector2(-moveSpeed, rig.velocity.y);
+    }
+
+    public void slowMoveRight()
+    {
+        rig.velocity = new Vector2(moveSpeed, rig.velocity.y);
+    }
+
+    public void forceJump()
+    {
+    
     }
 }

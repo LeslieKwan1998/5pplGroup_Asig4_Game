@@ -19,9 +19,9 @@ TagManager:
   - 
   - Player
   - Arm
-  - 
-  - 
-  - 
+  - Monster
+  - PlantForm
+  - Gate
   - 
   - 
   - 
@@ -45,9 +45,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 252810091
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2799467425
+    locked: 0
   - name: Player
     uniqueID: 2302014537
     locked: 0
   - name: effect
     uniqueID: 4128573039
+    locked: 0
+  - name: UI
+    uniqueID: 1079336055
     locked: 0

@@ -23,6 +23,14 @@ public partial class CenterController : MonoBehaviour
     public Transform GroundCheckM;
     [SerializeField]
     public Transform GroundCheckR;
+    [SerializeField]
+    public float ChargingForce = 50f;
+    [SerializeField]
+    GameObject notifierPrefab;
+    [SerializeField]
+    public Transform savePoint;
+    [SerializeField]
+    bool startWithSpatula;
 
     public bool isFaceToX = true;
     
@@ -47,7 +55,10 @@ public partial class CenterController : MonoBehaviour
     {
         getComponents();
         getAbilities();
+        if(!startWithSpatula)
         stateMachine = new StateMachine<CenterController>(this, this, new IdleState(this));
+        else
+            stateMachine = new StateMachine<CenterController>(this, this, new IdleWithArmState(this));
         stateMachine.excute();
     }
 
@@ -65,6 +76,7 @@ public partial class CenterController : MonoBehaviour
         {
             rotateArm = this.GetComponentInChildren<IRotateArm>();
             rotateArm.enableAbility(this);
+
             rotateArm.deactivate();
         }
         catch
@@ -249,4 +261,30 @@ public partial class CenterController : MonoBehaviour
             this.gameObject.transform.localScale = new Vector3(-this.gameObject.transform.localScale.x, this.gameObject.transform.localScale.y, this.gameObject.transform.localScale.z);
     }
     
+    public void addChargingForce()
+    {
+        Vector2 dir = armController.gameObject.transform.up;
+        Vector2 force = -dir.normalized * ChargingForce;
+        rig.AddForce(force, ForceMode2D.Impulse);
+        Debug.Log("addforce");
+
+    }
+
+    public void showNotify(string message,Color color)
+    {
+        GameObject a = Instantiate(notifierPrefab, this.transform.position, this.transform.rotation);
+        a.GetComponent<Notifier>().beCreat(message, color);
+    }
+    public void showNotify(string message, Color color,AttackPower attackPower)
+    {
+        GameObject a = Instantiate(notifierPrefab, this.transform.position, this.transform.rotation);
+        a.GetComponent<Notifier>().showHit(message, color, attackPower);
+    }
+
+    public void dead()
+    {
+        rig.velocity = Vector2.zero;
+        this.gameObject.transform.position = savePoint.position;
+
+    }
 }

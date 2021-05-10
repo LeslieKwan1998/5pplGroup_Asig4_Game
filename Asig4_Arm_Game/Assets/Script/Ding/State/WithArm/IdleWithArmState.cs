@@ -24,6 +24,12 @@ public class IdleWithArmState : State
     {
         base.excute();
         centerController.rotateArm.stopRotate();
+      
+    }
+    public override void leaveState()
+    {
+        base.leaveState();
+    
     }
     public override State tryTrans()
     {
@@ -31,10 +37,12 @@ public class IdleWithArmState : State
             return new RotateMoveState(centerController);
         if (Input.GetKey(KeyCode.Space)&&pausing == false)
             return new IdleState(centerController);
-        //if (Input.GetKey(KeyCode.L) && pausing == false)
-        //    return new BreakJamState(centerController);
+        if (Input.GetKey(KeyCode.L) && pausing == false)
+            return new BreakJamState(centerController);
         if (Input.GetKey(KeyCode.J) )
             return new HitState(centerController);
+        if (Input.GetKey(KeyCode.K))
+            return new ChargeArmState(centerController);
         return this;
     }
 

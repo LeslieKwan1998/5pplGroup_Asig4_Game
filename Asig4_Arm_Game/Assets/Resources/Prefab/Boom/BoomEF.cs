@@ -5,6 +5,7 @@ using UnityEngine;
 public class BoomEF : MonoBehaviour
 {
     // Start is called before the first frame update
+    AttackPower attackPower;
     void Start()
     {
         StartCoroutine(disaPear());
@@ -14,6 +15,10 @@ public class BoomEF : MonoBehaviour
     void Update()
     {
         
+    }
+    public void beCreat(AttackPower attackPower)
+    {
+        this.attackPower = attackPower;
     }
 
     IEnumerator disaPear()
@@ -26,6 +31,12 @@ public class BoomEF : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
          
+        }
+        if (collision.gameObject.tag == "Monster")
+        {
+            EnemyController enemyController = collision.gameObject.GetComponent<EnemyController>();
+            enemyController.beHit(attackPower);
+
         }
     }
 }
