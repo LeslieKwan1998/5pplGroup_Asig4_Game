@@ -24,8 +24,10 @@ public class InAirDownState : MovebleAirState
 
     public override State tryTrans()
     {
-        if (Input.GetKey(KeyCode.K)&&ableToSuperJump)
+        if (Input.GetKey(KeyCode.K) && ableToSuperJump)
             return new SuperJumpState(centerController);
+        //if ((Input.GetKey(KeyCode.K)||Input.GetKey(KeyCode.K) && ableToSuperJump))
+        //    return new SuperJumpState(centerController);
         if (centerController.state_isOnGround())
             return new IdleState(centerController);
         if (Input.GetKey(KeyCode.Space))

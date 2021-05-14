@@ -15,23 +15,23 @@ public class BreakJamState : State
 
     public override void beginFunc()
     {
-        centerController.StartCoroutine(aniProcess());
+      //  centerController.StartCoroutine(aniProcess());
     }
     public override void leaveState()
     {
         base.leaveState();
         
-        centerController.getArmController().animator.enabled = false;
+       // centerController.getArmController().animator.enabled = false;
 
     }
     public override State tryTrans()
     {
       
-        Animator ani = centerController.getArmController().animator;
-        AnimatorStateInfo info = ani.GetCurrentAnimatorStateInfo(0);
-        Debug.Log("time" + info.normalizedTime);
-        // 判断动画是否播放完成
-        if ( info.normalizedTime >= 1f)
+        //Animator ani = centerController.getArmController().animator;
+        //AnimatorStateInfo info = ani.GetCurrentAnimatorStateInfo(0);
+        //Debug.Log("time" + info.normalizedTime);
+        //// 判断动画是否播放完成
+        //if ( info.normalizedTime >= 1f)
             return new IdleWithJamState(centerController);
         return this;
     }

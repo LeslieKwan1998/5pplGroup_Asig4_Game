@@ -11,6 +11,8 @@ public class HitBox : MonoBehaviour
     Transform hitPos;
     [SerializeField]
     Rigidbody2D rig;
+    [SerializeField]
+    CenterController centerController;
     public bool isHiting()
     {
         return isHit;
@@ -25,6 +27,7 @@ public class HitBox : MonoBehaviour
     }
     void beHit()
     {
+        Debug.Log("behit");
         isHit = true;
     }
     void leaveHit()
@@ -34,15 +37,19 @@ public class HitBox : MonoBehaviour
    
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "PlatForm" || collision.gameObject.tag == "Monster")
+
+
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "PlatForm" || collision.gameObject.tag == "Monster" || collision.gameObject.tag == "Gate" || collision.gameObject.tag == "Jam")
         {   beHit();
             updateMaxVelo(rig.velocity);
             hitPosBuffer = this.transform.position;
+            if (collision.gameObject.tag == "Jam")
+                collision.gameObject.GetComponent<Jam>().beHit(centerController);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "PlatForm" || collision.gameObject.tag == "Monster")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "PlatForm" || collision.gameObject.tag == "Monster" || collision.gameObject.tag == "Gate"|| collision.gameObject.tag == "Jam")
             leaveHit();
     }
 

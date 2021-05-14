@@ -8,6 +8,7 @@ public class BasicMoveMent : MonoBehaviour, IBasicMoveMent
     bool _isEnable = true;
     bool _isActivate = false;
     Rigidbody2D rig;
+    [SerializeField]
     float moveSpeed = 5f;
     float jumpSpeed = 16f;
     CenterController centerController;

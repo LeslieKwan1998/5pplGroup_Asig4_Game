@@ -29,8 +29,19 @@ public class ChargeArmState : State
         // 判断动画是否播放完成
         if (info.normalizedTime >= 1.0f)
         {
-            if(centerController.getArmController().isHiting())
+            if(centerController.slimeArm.isGrabingThing())
+            {
+                centerController.slimeArm.deactivate();
                 centerController.addChargingForce();
+           
+           }
+
+          
+           else if (centerController.getArmController().isHiting())
+            {
+                Debug.Log("addcharge");
+            centerController.addChargingForce(); 
+            }
             return new IdleWithArmState(centerController);
         }
         return this;

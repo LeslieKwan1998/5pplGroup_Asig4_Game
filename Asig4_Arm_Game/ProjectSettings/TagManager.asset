@@ -8,6 +8,7 @@ TagManager:
   - PlatForm
   - Arm
   - Monster
+  - Jam
   layers:
   - Default
   - TransparentFX

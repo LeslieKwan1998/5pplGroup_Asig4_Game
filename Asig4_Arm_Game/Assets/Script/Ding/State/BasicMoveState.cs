@@ -48,7 +48,7 @@ public abstract class MovebleAirState:State
     {
         base.excute();
         if (Input.GetKey(KeyCode.A))
-            centerController.basicMoveMent.slowMoveLeft();
+            centerController.basicMoveMent.slowMoveLeft(); 
         if (Input.GetKey(KeyCode.D))
             centerController.basicMoveMent.slowMoveRight();
 

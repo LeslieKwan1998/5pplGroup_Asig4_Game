@@ -26,6 +26,7 @@ public class LandHit : MonoBehaviour, ILandHit
 
     public void Hit()
     {
+        Debug.Log("imhitting" +centerController.stateMachine.getCurState());
         StartCoroutine(landHitingProcess());
     }
 
@@ -91,12 +92,12 @@ public class LandHit : MonoBehaviour, ILandHit
 
         float booMPower = rotateTime * rotateTime *basef + 0.2f  ;
         AttackPower attackPower = AttackPower.pa;
-        if (booMPower >= 6.7f)
+        if (booMPower >= 6.2f)
         {
             attackPower = AttackPower.boom;
             centerController.showNotify("DOOM", Color.red, attackPower);
         }
-        else if (booMPower > 3.8f)
+        else if (booMPower > 3f)
         {
             attackPower = AttackPower.dong;
             centerController.showNotify("Dong", Color.yellow,attackPower );
@@ -109,7 +110,7 @@ public class LandHit : MonoBehaviour, ILandHit
 
 
 
-        Debug.Log("Roteta" + rotateTime * rotateTime *basef+ "velo " );
+       // Debug.Log("Roteta" + rotateTime * rotateTime *basef+ "velo " );
         GameObject a = Instantiate(BoomEFprefab, armController.getHitPos(),Quaternion.identity);
         a.transform.localScale *= 1 + rotateTime*2;
         a.GetComponent<BoomEF>().beCreat(attackPower);

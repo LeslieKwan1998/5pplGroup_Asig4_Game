@@ -19,7 +19,7 @@ public class EggChasingState : State
     {
         base.excute();
         enemyController.moveToTarget();
-        Debug.Log(enemyController.state_hasEnemeyInAttackRange() +" r " +enemyController.state_readyToAttack());
+
 
     }
     public override State tryTrans()

@@ -23,8 +23,14 @@ public class IdleWithArmState : State
     public override void excute()
     {
         base.excute();
-        centerController.rotateArm.stopRotate();
-      
+     
+        if (Input.GetKey(KeyCode.A))
+            centerController.rotateArm.rotateLeft();
+        if (Input.GetKey(KeyCode.D))
+            centerController.rotateArm.rotateRight();
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && centerController.rotateArm.isEnabled())
+            centerController.rotateArm.stopRotate();
+
     }
     public override void leaveState()
     {
@@ -33,11 +39,10 @@ public class IdleWithArmState : State
     }
     public override State tryTrans()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            return new RotateMoveState(centerController);
+
         if (Input.GetKey(KeyCode.Space)&&pausing == false)
             return new IdleState(centerController);
-        if (Input.GetKey(KeyCode.L) && pausing == false)
+        if (centerController.state_goJamForm())
             return new BreakJamState(centerController);
         if (Input.GetKey(KeyCode.J) )
             return new HitState(centerController);

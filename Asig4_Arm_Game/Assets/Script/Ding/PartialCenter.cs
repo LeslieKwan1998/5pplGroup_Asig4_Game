@@ -32,6 +32,23 @@ public partial class CenterController
         return false;
     }
 
+    public bool state_goJamForm()
+    {
+        if (changeToJamTrigger)
+        {
+            changeToJamTrigger = false;
+            return true;
+        }return false;
+    }
+    public bool state_goBackFromJamForm()
+    {
+        if (changeBackfromJamTrgger)
+        {
+            changeBackfromJamTrgger = false;
+            return true;
+        }
+        return false;
+    }
     bool rayCheck(RaycastHit2D hit)
     {
         if (hit.collider != null)

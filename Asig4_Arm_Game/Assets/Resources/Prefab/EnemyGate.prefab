@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4640048746332942737}
   - component: {fileID: 4640048746332942736}
   - component: {fileID: 3882852488069588206}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: PlatForm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4640048747384998471}
   m_Layer: 0
   m_Name: EnemyGate
-  m_TagString: Untagged
+  m_TagString: PlatForm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

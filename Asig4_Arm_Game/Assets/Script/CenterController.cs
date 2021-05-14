@@ -31,13 +31,29 @@ public partial class CenterController : MonoBehaviour
     public Transform savePoint;
     [SerializeField]
     bool startWithSpatula;
+    [SerializeField]
+    Sprite normalSpatula;
+    [SerializeField]
+    Sprite jamSpatula;
+
+    public bool changeToJamTrigger = false;
+    public  bool changeBackfromJamTrgger = false;
+    [SerializeField]
+    public float JamStateTime = 10f;
+    [HideInInspector]
+    public float JamStateRestTime = 0;
+
 
     public bool isFaceToX = true;
     
 
     // Start is called before the first frame update
+    [HideInInspector]
+   public StateMachine<CenterController> stateMachine;
 
-    StateMachine<CenterController> stateMachine;
+   
+
+
    public  Rigidbody2D getRig()
     {
         return rig;
@@ -147,8 +163,11 @@ public partial class CenterController : MonoBehaviour
         if (Input.GetKey(KeyCode.T))
         {
             
-            Debug.Log("on" + state_isOnGround());
+            Debug.Log(stateMachine.getCurState());
         }
+
+        
+
       
     }
 
@@ -219,12 +238,12 @@ public partial class CenterController : MonoBehaviour
         {
             if(basicMoveMent.isActivate())
             {
-                basicMoveMent.deactivate();
+              //  basicMoveMent.deactivate();
                 rotateArm.activate();
             }
             else
             {
-                basicMoveMent.activate();
+              //  basicMoveMent.activate();
                 rotateArm.deactivate();
             }
 
@@ -286,5 +305,14 @@ public partial class CenterController : MonoBehaviour
         rig.velocity = Vector2.zero;
         this.gameObject.transform.position = savePoint.position;
 
+    }
+
+    public void changeToNomalSprite()
+    {
+        armController.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = normalSpatula; 
+    }
+    public void changeToJamSprite()
+    {
+        armController.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = jamSpatula;
     }
 }
