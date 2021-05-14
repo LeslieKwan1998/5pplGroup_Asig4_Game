@@ -16,6 +16,7 @@ public class SuperJumpState : MovebleAirState
         centerController.basicMoveMent.SuperJump();
       //  centerController.basicMoveMent.Jump();
         centerController.playerAniClip("NormalSuperJump");
+        centerController.playAudio("SuperJump",0.25f);
     }
 
     public override State tryTrans()

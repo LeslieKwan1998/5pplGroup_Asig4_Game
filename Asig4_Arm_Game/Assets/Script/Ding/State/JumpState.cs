@@ -17,6 +17,7 @@ public class JumpState : MovebleAirState
         centerController.basicMoveMent.Jump();
         //  centerController.setPlayerAni("NormalJump");
         centerController.playerAniClip("NormalJump");
+        centerController.playAudio("Jump",0.1f);
     }
 
     public override State tryTrans()
