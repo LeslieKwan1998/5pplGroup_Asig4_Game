@@ -18,7 +18,7 @@ public class IdleWithArmState : State
         centerController.rotateArm.activate();
         centerController.rotateArm.stopRotate();
         centerController.playerAniClip("ArmIdle");
-      
+       // centerController.playAudio("PullOutSpatula");
     }
     public override void excute()
     {

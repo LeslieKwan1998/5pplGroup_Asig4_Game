@@ -28,8 +28,10 @@ public class IdleState : State
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             return new BasicMoveState(centerController);
-        if (Input.GetKey(KeyCode.Space)&&pausing ==false)
-            return new IdleWithArmState(centerController);
+        if (Input.GetKey(KeyCode.Space) && pausing == false)
+        {
+            
+            return new IdleWithArmState(centerController); }
         if (Input.GetKey(KeyCode.J))
         {
             return new JumpState(centerController);

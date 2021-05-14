@@ -24,6 +24,8 @@ public partial class CenterController : MonoBehaviour
     [SerializeField]
     public Transform GroundCheckR;
     [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
     public float ChargingForce = 50f;
     [SerializeField]
     GameObject notifierPrefab;
@@ -314,5 +316,23 @@ public partial class CenterController : MonoBehaviour
     public void changeToJamSprite()
     {
         armController.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = jamSpatula;
+    }
+    public void playAudio(string path,float startTime = 0)
+    {
+        AudioSource audio = gameObject.AddComponent<AudioSource>();
+        AudioClip clip = Resources.Load<AudioClip>("Audio/" + path);
+        audio.clip = clip;
+        audio.time = startTime;
+        audio.Play();
+        StartCoroutine(destroyAudio(audio));
+
+    }
+    IEnumerator destroyAudio(AudioSource audio)
+    {
+        while(audio.isPlaying)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        Destroy(audio);
     }
 }
