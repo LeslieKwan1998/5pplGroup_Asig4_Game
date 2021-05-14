@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperJumpState : State
+public class SuperJumpState : MovebleAirState
 {
-    CenterController centerController;
+    
 
     public SuperJumpState(CenterController centerController)
     {

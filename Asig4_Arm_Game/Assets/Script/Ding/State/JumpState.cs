@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpState : State
+public class JumpState : MovebleAirState
 {
-    CenterController centerController;
+
 
     public JumpState(CenterController centerController)
     {
@@ -28,6 +28,8 @@ public class JumpState : State
             return new InAirUpState(centerController);
         if (Input.GetKey(KeyCode.K))
             return new SuperJumpState(centerController);
+        //if (Input.GetKey(KeyCode.K)||Input.GetKey(KeyCode.J ))
+        //    return new SuperJumpState(centerController);
         if (Input.GetKey(KeyCode.Space) )
         {
             centerController.basicMoveMent.Jump() ;

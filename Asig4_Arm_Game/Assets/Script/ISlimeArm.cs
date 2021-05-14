@@ -5,6 +5,6 @@ using UnityEngine;
 public interface ISlimeArm:IAbility,iActivateAbility
 {
 
-  
+    bool isGrabingThing();
 
 }

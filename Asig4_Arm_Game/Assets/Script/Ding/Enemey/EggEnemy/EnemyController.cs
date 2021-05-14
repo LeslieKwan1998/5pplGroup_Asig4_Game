@@ -174,7 +174,7 @@ public class EnemyController : MonoBehaviour
     public void beHit(AttackPower attackPower)
     {
 
-        Debug.Log("pw" + (int)attackPower + "de" + defenceLevel);
+
 
         if((int) attackPower>=defenceLevel)
         {

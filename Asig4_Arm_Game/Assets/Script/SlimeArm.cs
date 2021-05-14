@@ -5,7 +5,8 @@ using UnityEngine;
 public class SlimeArm : MonoBehaviour, ISlimeArm
 {
     HingeJoint2D GrabJoint;
-   
+    CenterController centerController;
+    float massBuffer;
     // Start is called before the first frame update
     bool isGrabMode = false;
     bool _isEnabled = false;
@@ -15,12 +16,23 @@ public class SlimeArm : MonoBehaviour, ISlimeArm
         { return; }
         GrabJoint =this.gameObject.AddComponent<HingeJoint2D>();
         GrabJoint.connectedBody = rigidbody2D;
-
+        GrabJoint.anchor = new Vector2(0, 4.68f);
+        massBuffer = centerController.getRig().mass;
+        centerController.getRig().mass = 1;
+        centerController.gameObject.transform.SetParent(rigidbody2D.gameObject.transform);
     }
+    
+    public bool isGrabingThing()
+    {
+        return GrabJoint != null;
+    }
+
     void releaseThing()
     {
         if (GrabJoint != null)
             GrabJoint.breakForce = 0;
+        centerController.gameObject.transform.parent = null;
+        centerController.getRig().mass = massBuffer;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -42,7 +54,9 @@ public class SlimeArm : MonoBehaviour, ISlimeArm
 
     public void enableAbility(CenterController centerController)
     {
-     
+
+        this.centerController = centerController;
+        massBuffer = centerController.getRig().mass;
         _isEnabled = true;
       
     }
@@ -60,13 +74,13 @@ public class SlimeArm : MonoBehaviour, ISlimeArm
     public void activate()
     {
         isGrabMode = true;
-        this.GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        centerController.changeToJamSprite();
     }
 
     public void deactivate()
     {
         isGrabMode = false;
         releaseThing();
-        this.GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        centerController.changeToNomalSprite();
     }
 }

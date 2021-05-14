@@ -34,7 +34,12 @@ public class IdleState : State
         {
             return new JumpState(centerController);
         }
-        if(!centerController.state_isOnGround())
+        //if (Input.GetKey(KeyCode.J)||Input.GetKey(KeyCode.K))
+        //{
+        //    return new JumpState(centerController);
+        //}
+
+        if (!centerController.state_isOnGround())
         {
             return new InAirUpState(centerController);
         }
