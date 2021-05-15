@@ -14,8 +14,9 @@ public class IdleState : MovebleAirState
     public override void beginFunc()
     {
         centerController.curForm = Form.normal;
-       
-    
+
+        centerController.basicMoveMent.setKlock(true);
+        centerController.basicMoveMent.setJlock(false);
         centerController.rotateArm.deactivate();
         centerController.playerAniClip("NormalIdle");
         
@@ -27,13 +28,15 @@ public class IdleState : MovebleAirState
             centerController.basicMoveMent.moveLeft();
         if (Input.GetKey(KeyCode.D))
             centerController.basicMoveMent.moveRight();
+        if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+            centerController.getRig().velocity = Vector2.zero;
 
     }
 
     public override State tryTrans()
     {
 
-        if (Input.GetKey(KeyCode.Space) && pausing == false)
+        if (Input.GetKey(KeyCode.Space) && pausing == false&&centerController.rotateArm.isEnabled())
         {
             
             return new IdleWithArmState(centerController); }

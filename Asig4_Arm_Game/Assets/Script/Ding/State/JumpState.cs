@@ -14,6 +14,8 @@ public class JumpState : MovebleAirState
     public override void beginFunc()
     {
         Debug.Log("jump");
+        centerController.basicMoveMent.setKlock(false);
+        centerController.basicMoveMent.setJlock(true);
         centerController.basicMoveMent.Jump();
         //  centerController.setPlayerAni("NormalJump");
         centerController.playerAniClip("NormalJump");
@@ -31,7 +33,7 @@ public class JumpState : MovebleAirState
             return new SuperJumpState(centerController);
         //if (Input.GetKey(KeyCode.K)||Input.GetKey(KeyCode.J ))
         //    return new SuperJumpState(centerController);
-        if (Input.GetKey(KeyCode.Space) )
+        if (Input.GetKey(KeyCode.Space) && centerController.rotateArm.isEnabled())
         {
             centerController.basicMoveMent.Jump() ;
             return new IdleWithArmState(centerController);
