@@ -40,9 +40,31 @@ public class AbilityLocker : MonoBehaviour
 
     void tutorious()
     {
-        Time.timeScale = 0;
+      
         text.gameObject.SetActive(true);
         isActivate = true;
+        switch(unLockAbility)
+        {
+            case UnLockAbility.jump:
+                centerController.basicMoveMent.setJlock(false);
+                break;
+            case UnLockAbility.superJump:
+                centerController.basicMoveMent.setKlock(false);
+                break;
+            case UnLockAbility.Charge:
+                centerController.chargeArm.enableAbility();
+                break;
+            case UnLockAbility.Hit:
+                centerController.landHit.enableAbility();
+                break;
+            case UnLockAbility.spetuala:
+                centerController.rotateArm.enableAbility();
+                break;
+
+
+
+        }
+        Time.timeScale = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,5 +80,5 @@ public class AbilityLocker : MonoBehaviour
 }
 public enum UnLockAbility
 {
-    jump,superJump,Hit,Charge,SlimeAr
+    jump,superJump,Hit,Charge,spetuala,nothing
 }
