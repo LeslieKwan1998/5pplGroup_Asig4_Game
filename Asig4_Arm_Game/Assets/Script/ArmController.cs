@@ -13,6 +13,7 @@ public class ArmController : MonoBehaviour
     public HitBox hitBox; // to detect whether this arm is hitng something
     [SerializeField]
     public Animator animator; // to detect whether this arm is hitng something
+    public bool isHiding = false;
                               // Start is called before the first frame update
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class ArmController : MonoBehaviour
         //  this.gameObject.transform.localScale = orignScale;
         renderer.sprite = orignSprite;
         boxCollider.isTrigger = false;
+        isHiding = false;
     }
     public void hideArm()
     {
@@ -49,6 +51,7 @@ public class ArmController : MonoBehaviour
 
         renderer.sprite = null;
         boxCollider.isTrigger = true;
+        isHiding = true;
     }
     public bool isHiting()
     {

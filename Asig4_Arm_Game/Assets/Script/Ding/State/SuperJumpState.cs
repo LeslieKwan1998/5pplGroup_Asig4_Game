@@ -29,6 +29,7 @@ public class SuperJumpState : MovebleAirState
         if (Input.GetKey(KeyCode.Space) && pausing == false)
         {
             centerController.basicMoveMent.SuperJump();
+            centerController.playAudio("SuperJumpSUCCESS");
             return new IdleWithArmState(centerController); 
         
         }

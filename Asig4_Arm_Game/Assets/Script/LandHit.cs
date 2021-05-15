@@ -15,7 +15,7 @@ public class LandHit : MonoBehaviour, ILandHit
     {
         _isEnable = false;
     }
-
+    
     public void enableAbility(CenterController centerController)
     {
         _isEnable = true;
@@ -120,5 +120,10 @@ public class LandHit : MonoBehaviour, ILandHit
        
 
 
+    }
+
+    public void enableAbility()
+    {
+        _isEnable = true;
     }
 }

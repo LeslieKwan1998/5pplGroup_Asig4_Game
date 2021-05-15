@@ -109,6 +109,11 @@ public class RotateArm : MonoBehaviour, IRotateArm
         armController.hideArm();
     }
 
+    public void enableAbility()
+    {
+        _isEnable = true;
+    }
+
     //public void breakJoint()
     //{
     //    joint2D.breakForce = 0;

@@ -27,7 +27,7 @@ public class JumpState : MovebleAirState
         // 判断动画是否播放完成
         if (info.normalizedTime >= 1.0f)
             return new InAirUpState(centerController);
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.K)&&!centerController.basicMoveMent.getKlocked())
             return new SuperJumpState(centerController);
         //if (Input.GetKey(KeyCode.K)||Input.GetKey(KeyCode.J ))
         //    return new SuperJumpState(centerController);

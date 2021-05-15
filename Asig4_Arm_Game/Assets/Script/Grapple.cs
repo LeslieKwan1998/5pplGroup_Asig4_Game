@@ -116,4 +116,9 @@ public class Grapple : MonoBehaviour, IGrapple
         }
         armController.showArm();
     }
+
+    public void enableAbility()
+    {
+        _isEnable = true;
+    }
 }

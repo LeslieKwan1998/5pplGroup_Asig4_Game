@@ -13,6 +13,8 @@ public class HitBox : MonoBehaviour
     Rigidbody2D rig;
     [SerializeField]
     CenterController centerController;
+    bool audioBool = true;
+    
     public bool isHiting()
     {
         return isHit;
@@ -28,11 +30,17 @@ public class HitBox : MonoBehaviour
     void beHit()
     {
         Debug.Log("behit");
+        if (audioBool)
+        {   audioBool = false;
+            if(!centerController.getArmController().isHiding)
+            centerController.playAudio("SpatulaHitWood",0,0.5f);
+        }
         isHit = true;
     }
     void leaveHit()
     {
         isHit = false;
+        audioBool = true;
     }
    
     private void OnTriggerStay2D(Collider2D collision)

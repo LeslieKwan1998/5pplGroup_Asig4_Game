@@ -13,6 +13,7 @@ public class ChargeArmState : State
 
     public override void beginFunc()
     {
+        if(centerController.chargeArm.isEnabled())
         centerController.playerAniClip("Arm@Charge");
     }
 
@@ -24,6 +25,10 @@ public class ChargeArmState : State
     }
     public override State tryTrans()
     {
+
+        if(!centerController.chargeArm.isEnabled())
+            return new IdleWithArmState(centerController, true);
+     
         Animator animator = centerController.playerAni;
         AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
         // 判断动画是否播放完成
@@ -42,7 +47,7 @@ public class ChargeArmState : State
                 Debug.Log("addcharge");
             centerController.addChargingForce(); 
             }
-            return new IdleWithArmState(centerController);
+            return new IdleWithArmState(centerController,true);
         }
         return this;
     }

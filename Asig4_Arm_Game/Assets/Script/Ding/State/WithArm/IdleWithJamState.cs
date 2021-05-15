@@ -16,7 +16,7 @@ public class IdleWithJamState : State
 
     public override void beginFunc()
     {
-    
+        centerController.curForm = Form.jam;
         centerController.rotateArm.activate();
         centerController.rotateArm.stopRotate();
         centerController.playerAniClip("ArmIdle");

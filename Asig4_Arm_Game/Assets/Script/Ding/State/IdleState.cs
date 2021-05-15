@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : State
+public class IdleState : MovebleAirState
 {
-    CenterController centerController;
+  
     
     public IdleState(CenterController centerController)
     {
@@ -13,26 +13,31 @@ public class IdleState : State
 
     public override void beginFunc()
     {
+        centerController.curForm = Form.normal;
        
     
         centerController.rotateArm.deactivate();
         centerController.playerAniClip("NormalIdle");
+        
     }
     public override void excute()
     {
         base.excute();
-    
+        if (Input.GetKey(KeyCode.A))
+            centerController.basicMoveMent.moveLeft();
+        if (Input.GetKey(KeyCode.D))
+            centerController.basicMoveMent.moveRight();
+
     }
 
     public override State tryTrans()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            return new BasicMoveState(centerController);
+
         if (Input.GetKey(KeyCode.Space) && pausing == false)
         {
             
             return new IdleWithArmState(centerController); }
-        if (Input.GetKey(KeyCode.J))
+        if (Input.GetKey(KeyCode.J)&&!centerController.basicMoveMent.getJlocked())
         {
             return new JumpState(centerController);
         }
