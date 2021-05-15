@@ -13,7 +13,7 @@ public class JumpState : MovebleAirState
 
     public override void beginFunc()
     {
-        Debug.Log("jump");
+
         centerController.basicMoveMent.setKlock(false);
         centerController.basicMoveMent.setJlock(true);
         centerController.basicMoveMent.Jump();
