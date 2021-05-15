@@ -347,4 +347,10 @@ public partial class CenterController : MonoBehaviour
         }
         Destroy(audio);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Jam")
+            collision.gameObject.GetComponent<Jam>().beHit(this);
+    }
 }

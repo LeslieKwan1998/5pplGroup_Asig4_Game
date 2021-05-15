@@ -29,7 +29,7 @@ public class HitBox : MonoBehaviour
     }
     void beHit()
     {
-        Debug.Log("behit");
+
         if (audioBool)
         {   audioBool = false;
             if(!centerController.getArmController().isHiding)

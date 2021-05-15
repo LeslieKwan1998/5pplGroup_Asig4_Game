@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTriggered: 0
-  myRig: {fileID: 0}
+  myRig: {fileID: 3204702921443781032}
 --- !u!61 &6422510727830831607
 BoxCollider2D:
   m_ObjectHideFlags: 0

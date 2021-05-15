@@ -7,13 +7,16 @@ public class PlayerDetector : MonoBehaviour
    public bool isTriggered = false;
     [SerializeField]
     Rigidbody2D myRig;
+    
     Rigidbody2D playerBody;
 
 
     private void Update()
     {
+       
         if(myRig!=null&&playerBody!=null)
         {
+            Debug.Log("set");
             playerBody.velocity += myRig.velocity;
         }
     }

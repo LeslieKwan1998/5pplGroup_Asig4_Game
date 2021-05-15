@@ -28,8 +28,8 @@ public class IdleState : MovebleAirState
             centerController.basicMoveMent.moveLeft();
         if (Input.GetKey(KeyCode.D))
             centerController.basicMoveMent.moveRight();
-        if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
-            centerController.getRig().velocity = Vector2.zero;
+        //if (!Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        //    centerController.getRig().velocity = Vector2.zero;
 
     }
 

@@ -192,10 +192,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfbdc4d4e87e8149b7537def165bc7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unLockAbility: 0
+  unLockAbility: 5
   keyCode: 106
   message: Press J to Jump
   text: {fileID: 2325922774379272885}
+  ForceJump: 0
 --- !u!61 &2325922774688637080
 BoxCollider2D:
   m_ObjectHideFlags: 0
