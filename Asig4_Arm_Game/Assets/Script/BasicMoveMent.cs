@@ -12,6 +12,9 @@ public class BasicMoveMent : MonoBehaviour, IBasicMoveMent
     float moveSpeed = 5f;
     float jumpSpeed = 16f;
     CenterController centerController;
+
+    bool Jlock;
+    bool Klock;
     public void activate()
     {
        _isActivate = true;
@@ -103,5 +106,30 @@ public class BasicMoveMent : MonoBehaviour, IBasicMoveMent
     public void forceJump()
     {
     
+    }
+
+    public void enableAbility()
+    {
+        _isEnable = true;
+    }
+
+    public bool getJlocked()
+    {
+        return Jlock;
+    }
+
+    public bool getKlocked()
+    {
+        return Klock;
+    }
+
+    public void setJlock(bool value)
+    {
+        Jlock = value;
+    }
+
+    public void setKlock(bool value)
+    {
+        Klock = value;
     }
 }

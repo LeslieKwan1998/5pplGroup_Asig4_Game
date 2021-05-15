@@ -13,4 +13,9 @@ public interface IBasicMoveMent :IAbility,iActivateAbility
     void SuperJump();
     void SmallJump();
     void forceJump();
+
+    bool getJlocked();
+    bool getKlocked();
+    void setJlock(bool value);
+    void setKlock(bool value);
 }

@@ -83,4 +83,9 @@ public class SlimeArm : MonoBehaviour, ISlimeArm
         releaseThing();
         centerController.changeToNomalSprite();
     }
+
+    public void enableAbility()
+    {
+        _isEnabled = true;
+    }
 }

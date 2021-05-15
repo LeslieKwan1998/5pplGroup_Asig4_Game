@@ -6,19 +6,21 @@ using UnityEngine;
 public class IdleWithArmState : State
 {
     CenterController centerController;
- 
-    public IdleWithArmState(CenterController centerController)
+    bool muteAudio = false;
+    public IdleWithArmState(CenterController centerController,bool muteAudio = false)
     {
         this.centerController = centerController;
+        this.muteAudio = muteAudio;
     }
 
     public override void beginFunc()
     {
-
+        centerController.curForm = Form.arm;
         centerController.rotateArm.activate();
         centerController.rotateArm.stopRotate();
         centerController.playerAniClip("ArmIdle");
-       // centerController.playAudio("PullOutSpatula");
+        if(!muteAudio)
+        centerController.playAudio("PullOutSpatula");
     }
     public override void excute()
     {
@@ -40,13 +42,15 @@ public class IdleWithArmState : State
     public override State tryTrans()
     {
 
-        if (Input.GetKey(KeyCode.Space)&&pausing == false)
-            return new IdleState(centerController);
+        if (Input.GetKey(KeyCode.Space) && pausing == false)
+        {
+            centerController.playAudio("PutbackSpatula");
+            return new IdleState(centerController); }
         if (centerController.state_goJamForm())
             return new BreakJamState(centerController);
         if (Input.GetKey(KeyCode.J) )
             return new HitState(centerController);
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.K) )
             return new ChargeArmState(centerController);
         return this;
     }

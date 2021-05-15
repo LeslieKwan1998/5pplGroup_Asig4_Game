@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Form { normal,arm,jam}
+public enum MoveAbility {normal,rotate}
+public enum Ability { jump,superJump,hit,reboucing,slimeArm  }
 public partial class CenterController : MonoBehaviour
 {
     public IBasicMoveMent basicMoveMent;
@@ -11,6 +14,12 @@ public partial class CenterController : MonoBehaviour
     public ISlimeArm slimeArm;
     public ITeleporte teleporte;
     public IChargeArm chargeArm;
+
+    public Form curForm;
+
+
+
+
     Rigidbody2D rig;
     [SerializeField]
     ArmController armController;
@@ -115,6 +124,7 @@ public partial class CenterController : MonoBehaviour
         {
             landHit = this.GetComponentInChildren<ILandHit>();
             landHit.enableAbility(this);
+            //landHit.disableAbility();
         }
         catch
         {
@@ -142,6 +152,7 @@ public partial class CenterController : MonoBehaviour
         try
         {
             chargeArm = this.GetComponentInChildren<IChargeArm>();
+            chargeArm.enableAbility(this);
         }
         catch
         {
@@ -317,12 +328,13 @@ public partial class CenterController : MonoBehaviour
     {
         armController.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = jamSpatula;
     }
-    public void playAudio(string path,float startTime = 0)
+    public void playAudio(string path,float startTime = 0,float volume = 1)
     {
         AudioSource audio = gameObject.AddComponent<AudioSource>();
         AudioClip clip = Resources.Load<AudioClip>("Audio/" + path);
         audio.clip = clip;
         audio.time = startTime;
+        audio.volume = volume;
         audio.Play();
         StartCoroutine(destroyAudio(audio));
 

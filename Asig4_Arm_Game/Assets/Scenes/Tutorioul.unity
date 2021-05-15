@@ -136,7 +136,7 @@ PrefabInstance:
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.98
+      value: -7.0799994
       objectReference: {fileID: 0}
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
@@ -205,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.4
+      value: -15.999999
       objectReference: {fileID: 0}
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
@@ -492,7 +492,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -745,7 +745,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 6.4
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1178,7 +1178,7 @@ PrefabInstance:
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.79
+      value: -14.429999
       objectReference: {fileID: 0}
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
@@ -1312,6 +1312,7 @@ MonoBehaviour:
   veloBuffer: {x: 0, y: 0}
   hitPos: {fileID: 1585104359}
   rig: {fileID: 0}
+  centerController: {fileID: 0}
 --- !u!4 &1078954138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
@@ -1472,7 +1473,7 @@ PrefabInstance:
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.2
+      value: -15.999999
       objectReference: {fileID: 0}
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
@@ -1575,7 +1576,7 @@ PrefabInstance:
     - target: {fileID: 4967221017436424452, guid: fb38de38a802f6e4bae75dffb4d06d6c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.1
+      value: -4.9
       objectReference: {fileID: 0}
     - target: {fileID: 4967221017436424452, guid: fb38de38a802f6e4bae75dffb4d06d6c,
         type: 3}
@@ -1886,6 +1887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 1077700429}
   animator: {fileID: 0}
+  isHiding: 0
 --- !u!114 &1351577665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,15 +2191,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6457337c1a0ac4b9a524f491b8c83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curForm: 0
   armController: {fileID: 1351577664}
   playerAni: {fileID: 0}
   GroundCheckL: {fileID: 0}
   GroundCheckM: {fileID: 0}
   GroundCheckR: {fileID: 0}
+  audioSource: {fileID: 0}
   ChargingForce: 50
   notifierPrefab: {fileID: 0}
   savePoint: {fileID: 0}
   startWithSpatula: 0
+  normalSpatula: {fileID: 0}
+  jamSpatula: {fileID: 0}
+  changeToJamTrigger: 0
+  changeBackfromJamTrgger: 0
+  JamStateTime: 10
+  JamStateRestTime: 0
   isFaceToX: 1
 --- !u!114 &1639573511
 MonoBehaviour:
@@ -2211,6 +2221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50bc575d91ee454ab78de5fe28eaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!4 &1664119504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1545268335625819812, guid: 4dfd746f3ee8cdb4696df3a425736329,
@@ -2470,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 4967221017436424452, guid: fb38de38a802f6e4bae75dffb4d06d6c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.1
+      value: -16.2
       objectReference: {fileID: 0}
     - target: {fileID: 4967221017436424452, guid: fb38de38a802f6e4bae75dffb4d06d6c,
         type: 3}
@@ -2539,7 +2550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1845539513
 Transform:
   m_ObjectHideFlags: 0
@@ -2666,7 +2677,7 @@ PrefabInstance:
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.24
+      value: -6.9699993
       objectReference: {fileID: 0}
     - target: {fileID: 7086392756599223132, guid: d106d98978fc07c4b82345ca3cf6f024,
         type: 3}
@@ -3015,7 +3026,7 @@ PrefabInstance:
     - target: {fileID: 4967221017436424452, guid: fb38de38a802f6e4bae75dffb4d06d6c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.6
+      value: -4.8
       objectReference: {fileID: 0}
     - target: {fileID: 4967221017436424452, guid: fb38de38a802f6e4bae75dffb4d06d6c,
         type: 3}
@@ -3240,21 +3251,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1545268335382764045, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.43096268
-      objectReference: {fileID: 0}
-    - target: {fileID: 1545268335382764045, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.90236974
-      objectReference: {fileID: 0}
-    - target: {fileID: 1545268335382764045, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -1851.058
-      objectReference: {fileID: 0}
     - target: {fileID: 1545268335625819812, guid: 4dfd746f3ee8cdb4696df3a425736329,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3320,36 +3316,6 @@ PrefabInstance:
       propertyPath: savePoint
       value: 
       objectReference: {fileID: 1173258646}
-    - target: {fileID: 1545268335896718901, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7339149
-      objectReference: {fileID: 0}
-    - target: {fileID: 1545268335896718901, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.67924154
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669400781827954480, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.4081306
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669400781827954480, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.91292363
-      objectReference: {fileID: 0}
-    - target: {fileID: 2773158088238153406, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.041884694
-      objectReference: {fileID: 0}
-    - target: {fileID: 2773158088238153406, guid: 4dfd746f3ee8cdb4696df3a425736329,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99912244
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4dfd746f3ee8cdb4696df3a425736329, type: 3}
 --- !u!1 &4256453003733050181
@@ -4424,7 +4390,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 0
-    m_SensorSize: {x: 1.3333334, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
