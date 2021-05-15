@@ -9,16 +9,18 @@ public class Gun : MonoBehaviour
     [SerializeField]
     Transform target;
     [SerializeField]
+    Transform GunPoint;
+    [SerializeField]
     float atkCd;
     [SerializeField]
     float atkForce;
 
-    float atkCDTimer 0;
+    float atkCDTimer =0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(shootingProcess());
     }
 
     // Update is called once per frame
@@ -36,11 +38,29 @@ public class Gun : MonoBehaviour
 
     void shoot()
     {
-        GameObject a = Instantiate(bulletPrefab, this.transform.position, this.transform.rotation);
+        GameObject a = Instantiate(bulletPrefab, GunPoint.transform.position, this.transform.rotation);
         Rigidbody2D rig = a.GetComponent<Rigidbody2D>();
         rig.AddForce(this.transform.up.normalized *atkForce);
 
     }
-    IEnumerator shootingProcess
+    IEnumerator shootingProcess()
+    {
+        while(true)
+        {
+            atkCDTimer += Time.deltaTime;
+            if(atkCDTimer>=atkCd)
+            {
+
+                atkCDTimer = 0;
+                shoot();
+            }
+            yield return new WaitForEndOfFrame();
+
+
+        }
+
+
+
+    }
 
 }
