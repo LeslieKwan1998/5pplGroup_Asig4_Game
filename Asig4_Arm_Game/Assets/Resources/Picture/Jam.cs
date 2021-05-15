@@ -11,7 +11,7 @@ public class Jam : MonoBehaviour
     float dispeatTime = 0.4f;
 
   
-    public float refreshTimer = 0;
+    float refreshTimer = 0;
     Vector3 scaleBuffer;
     // Start is called before the first frame update
     void Start()

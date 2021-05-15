@@ -30,7 +30,7 @@ public class InAirDownState : MovebleAirState
         //    return new SuperJumpState(centerController);
         if (centerController.state_isOnGround())
             return new IdleState(centerController);
-        if (Input.GetKey(KeyCode.Space) && pausing == false)
+        if (Input.GetKey(KeyCode.Space) && pausing == false && centerController.rotateArm.isEnabled())
             return new IdleWithArmState(centerController);
         return this;
     }
